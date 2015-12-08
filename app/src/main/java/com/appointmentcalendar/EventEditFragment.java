@@ -7,22 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import com.calendar.Event;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
+import static android.widget.Toast.*;
 
 public class EventEditFragment extends Fragment implements View.OnClickListener {
 

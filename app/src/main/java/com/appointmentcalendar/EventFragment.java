@@ -15,14 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import java.lang.Math.*;
-
 import com.calendar.Event;
-
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
+import static android.widget.Toast.*;
 
 public class EventFragment extends ListFragment implements AdapterView.OnItemClickListener {
 

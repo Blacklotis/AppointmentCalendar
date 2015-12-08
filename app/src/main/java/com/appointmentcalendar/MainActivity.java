@@ -1,5 +1,6 @@
 package com.appointmentcalendar;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,6 @@ import android.view.View;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-
 import com.calendar.Calendar;
 import com.calendar.CalendarAdapter;
 import com.calendar.Event;
@@ -20,9 +19,7 @@ import com.database.DatabaseAdapter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-
 import static android.widget.Toast.*;
-import com.tools.DateFormat;
 
 public class MainActivity extends ActionBarActivity implements Serializable,
                                                     CalendarFragment.CalendarFragmentListener,
@@ -48,6 +45,11 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         setContentView(R.layout.activity_main);
 
         calendarFragmentView = (CalendarView)findViewById(R.id.calendar);
+        calendarFragmentView = (CalendarView)findViewById(R.id.calendar);
+        calendarFragmentView.setFocusedMonthDateColor(Color.BLACK);
+        calendarFragmentView.setUnfocusedMonthDateColor(Color.LTGRAY);
+        calendarFragmentView.setWeekSeparatorLineColor(Color.BLACK);
+        calendarFragmentView.setWeekNumberColor(Color.RED);
 
         calendarFragContainer = (LinearLayout)findViewById(R.id.FragmentContainer1);
         calendarFragContainer.setId(R.id.FragmentContainer1);
@@ -185,7 +187,6 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         }
         fm.executePendingTransactions();
     }
-
 
     //This sets our second fragment with a new fragment.
     //When deleting an item, do not add the fragment with the deleted item to the back stack

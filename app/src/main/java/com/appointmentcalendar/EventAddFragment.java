@@ -7,22 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-
 import com.calendar.Event;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-
-import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
+import static android.widget.Toast.*;
 
 public class EventAddFragment extends Fragment implements View.OnClickListener {
 
@@ -74,9 +63,54 @@ public class EventAddFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         boolean correct = true;
 
-        int dayCheck = Integer.parseInt(eventDay.getText().toString());
-        int monthCheck = Integer.parseInt(eventMonth.getText().toString());
-        int yearCheck = Integer.parseInt(eventYear.getText().toString());
+        int dayCheck = -1;
+        int monthCheck = -1;
+        int yearCheck = -1;
+
+        if(eventDay.getText().length() == 0)
+        {
+            eventDay.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else if ( dayCheck <= 0 || dayCheck > 30 )
+        {
+            eventDay.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else
+        {
+            dayCheck = Integer.parseInt(eventDay.getText().toString());
+        }
+
+        if(eventMonth.getText().length() == 0)
+        {
+            eventMonth.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else if( monthCheck < 1 || monthCheck > 12 )
+        {
+            eventMonth.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else
+        {
+            monthCheck = Integer.parseInt(eventMonth.getText().toString());
+        }
+
+        if(eventYear.getText().length() == 0)
+        {
+            eventYear.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else if( yearCheck <= 2015 || yearCheck > 3000 )
+        {
+            eventYear.setBackgroundColor(android.graphics.Color.RED);
+            correct = false;
+        }
+        else
+        {
+            yearCheck = Integer.parseInt(eventYear.getText().toString());
+        }
 
         if(eventTitle.getText().length() == 0)
         {
@@ -86,21 +120,6 @@ public class EventAddFragment extends Fragment implements View.OnClickListener {
         if (eventOwner.getText().length() == 0) {
             eventOwner.setBackgroundColor(android.graphics.Color.RED);
             correct = false;
-        }
-        if ( (eventDay.getText().length() == 0) || (dayCheck <= 0 || dayCheck > 30) )
-        {
-                eventDay.setBackgroundColor(android.graphics.Color.RED);
-                correct = false;
-        }
-        if( (eventMonth.getText().length() == 0) || (monthCheck < 1 || monthCheck > 12) )
-        {
-                eventMonth.setBackgroundColor(android.graphics.Color.RED);
-                correct = false;
-        }
-        if( (eventYear.getText().length() == 0) || (yearCheck <= 2015 || yearCheck > 3000) )
-        {
-                eventYear.setBackgroundColor(android.graphics.Color.RED);
-                correct = false;
         }
 
         if(correct)
