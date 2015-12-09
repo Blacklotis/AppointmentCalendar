@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
     private ArrayList<Event> dailyEvents;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private int event_num = 0;
+    private long event_num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
 
     public void eventAdd_addEvent(Event e)
     {
-        e.setEventID((long) event_num);
+        e.setEventID(event_num);
         calAdapter.getCalendar(0).addEvent(e);
         dailyEvents = ourCal.getEvents(e.getDay(), e.getMonth(), e.getYear());
         makeText(getApplicationContext(), "EVENT ADD SUCCESS", LENGTH_SHORT).show();
@@ -231,13 +231,11 @@ public class MainActivity extends ActionBarActivity implements Serializable,
             ++i;
             newEvent = chosen.getEvent(i);
         }
-        if (i != event_num) {
-            event_num = (int)i;
-        }
+        
         dbAdapter.refresh();
 
         //Begin database -> calendar sync
-        calAdapter.syncCalendars(calendarID, dbAdapter.getEventCursor());
+        event_num = calAdapter.syncCalendars(calendarID, dbAdapter.getEventCursor());
     }
     
     @Override
@@ -256,7 +254,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         for(event_num = 1; event_num < 90; ++event_num)
         {
             today = new Event(event_num);
-            today.setDay((event_num%30));
+            today.setDay((int)event_num%30);
             today.setMonth(12);
             today.setYear(2015);
             today.setCalendarID(0);
