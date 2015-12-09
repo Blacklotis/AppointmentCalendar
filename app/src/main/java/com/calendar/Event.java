@@ -65,14 +65,14 @@ public class Event implements Parcelable{
 	/*Constructor that takes a cursor filled with event information*/
 	public Event(Cursor c)
 	{
-		this.eventID = c.getInt(c.getColumnIndexOrThrow("_eventID"));
-		this.calendarID = c.getLong(c.getColumnIndexOrThrow("_calendarID"));
+		this.eventID = c.getInt(c.getColumnIndexOrThrow("_eventid"));
+		this.calendarID = c.getLong(c.getColumnIndexOrThrow("_calendarid"));
 		this.owner = c.getString(c.getColumnIndexOrThrow("owner"));
 		this.title = c.getString(c.getColumnIndexOrThrow("title"));
 		this.location = c.getString(c.getColumnIndex("location"));
 		this.date = c.getString(c.getColumnIndexOrThrow("date"));
-		this.startTime = c.getString(c.getColumnIndexOrThrow("startTime"));
-		this.endTime = c.getString(c.getColumnIndexOrThrow("endTime"));
+		this.startTime = c.getString(c.getColumnIndexOrThrow("start_time"));
+		this.endTime = c.getString(c.getColumnIndexOrThrow("end_time"));
 		this.duration = c.getString(c.getColumnIndexOrThrow("duration"));
 		this.day = c.getInt(c.getColumnIndexOrThrow("day"));
 		this.month = c.getInt(c.getColumnIndexOrThrow("month"));
