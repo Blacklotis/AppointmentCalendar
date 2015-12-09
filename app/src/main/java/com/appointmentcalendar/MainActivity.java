@@ -36,6 +36,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
     private ArrayList<Event> dailyEvents;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private int event_num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,10 @@ public class MainActivity extends ActionBarActivity implements Serializable,
                 newEvents.add(newEvent);
                 setAddFragment(newEvents, false);
                 return true;
+            case R.id.refresh:
+                syncData(0);
+                makeText(getApplicationContext(), "Calendar refreshed.", LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -93,9 +98,12 @@ public class MainActivity extends ActionBarActivity implements Serializable,
 
     public void eventAdd_addEvent(Event e)
     {
+        e.setEventID((long) event_num);
         calAdapter.getCalendar(0).addEvent(e);
         dailyEvents = ourCal.getEvents(e.getDay(), e.getMonth(), e.getYear());
         makeText(getApplicationContext(), "EVENT ADD SUCCESS", LENGTH_SHORT).show();
+        ++event_num;
+        //syncData(0);
     }
     public void eventEdit_addEvent(Event e)
     {
@@ -210,21 +218,32 @@ public class MainActivity extends ActionBarActivity implements Serializable,
     }
 
     public void syncData(int calendarID) {
-        //Begin database -> calendar sync
-        calAdapter.syncCalendars(calendarID, dbAdapter.getEventCursor());
-
         //Begin calendar -> database sync
 
         //ASSUMPTIONS: terminates whenever EventID becomes -1.
         Calendar chosen = calAdapter.getCalendar(calendarID);
-        int i = 1;
+        long i = 1;
         Event newEvent = chosen.getEvent(i);
+
         while(newEvent.getEventID() != -1)
         {
             dbAdapter.addEvent(newEvent);
             ++i;
             newEvent = chosen.getEvent(i);
         }
+        if (i != event_num) {
+            event_num = (int)i;
+        }
+        dbAdapter.refresh();
+
+        //Begin database -> calendar sync
+        calAdapter.syncCalendars(calendarID, dbAdapter.getEventCursor());
+    }
+    
+    @Override
+    public void onDestroy() {
+        syncData(0);
+        super.onDestroy();
     }
 
     public void setTestData(){
@@ -234,10 +253,10 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         ourCal.setOwner("Mark");
         Event today;
 
-        for(int i = 1; i < 90; ++i)
+        for(event_num = 1; event_num < 90; ++event_num)
         {
-            today = new Event(i);
-            today.setDay((i%30));
+            today = new Event(event_num);
+            today.setDay((event_num%30));
             today.setMonth(12);
             today.setYear(2015);
             today.setCalendarID(0);
