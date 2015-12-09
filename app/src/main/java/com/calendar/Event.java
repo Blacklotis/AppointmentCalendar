@@ -290,5 +290,12 @@ public class Event implements Parcelable{
 	public long getEventID() {
 		return eventID;
 	}
+	
+	/**
+	 * @paran eventid the eventID to set
+	 */
+	public void setEventID(long eventid) {
+		this.eventID = eventid;
+	}
 
 }
