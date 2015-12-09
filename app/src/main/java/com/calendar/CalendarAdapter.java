@@ -46,8 +46,9 @@ public class CalendarAdapter {
     {
         return true;
     }
-    public boolean syncCalendars(int calendarID, Cursor c)
+    public long syncCalendars(int calendarID, Cursor c)
     {
+        long i = 1;
         c.moveToFirst();
         // ASSUMPTIONS: Cursor points to a valid database
         Calendar chosen = getCalendar(calendarID);
@@ -58,10 +59,11 @@ public class CalendarAdapter {
             {
                 Event newEvent = new Event(c);
                 chosen.addEvent(newEvent);
+                ++i;
             }
             c.moveToNext();
         }
 
-        return true;
+        return i;
     }
 }
