@@ -6,6 +6,10 @@
         android:orderInCategory="100"
         android:icon="@drawable/action_add_event"
         android:title="Add Event"/>
+    <item
+        android:id="@+id/refresh"
+        android:orderInCategory="100"
+        android:title="Refresh"/>
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" yourapp:showAsAction="never" />
 </menu>
