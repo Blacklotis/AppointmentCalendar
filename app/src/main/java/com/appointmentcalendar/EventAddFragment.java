@@ -102,7 +102,7 @@ public class EventAddFragment extends Fragment implements View.OnClickListener {
             eventYear.setBackgroundColor(android.graphics.Color.RED);
             correct = false;
         }
-        else if( yearCheck <= 2015 || yearCheck > 3000 )
+        else if( yearCheck < 2015 || yearCheck > 3000 )
         {
             eventYear.setBackgroundColor(android.graphics.Color.RED);
             correct = false;
