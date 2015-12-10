@@ -99,6 +99,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
     public void eventAdd_addEvent(Event e)
     {
         e.setEventID(event_num);
+        e.setCalendarID(0);
         calAdapter.getCalendar(0).addEvent(e);
         dailyEvents = ourCal.getEvents(e.getDay(), e.getMonth(), e.getYear());
         makeText(getApplicationContext(), "EVENT ADD SUCCESS", LENGTH_SHORT).show();
