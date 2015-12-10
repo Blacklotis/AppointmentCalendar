@@ -117,6 +117,7 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         Event e = events.get(0);
         calAdapter.getCalendar(0).deleteEvent(e.getEventID());
         calAdapter.getCalendar(0).addEvent(e);
+        dbAdapter.addEvent(e);
         dailyEvents = ourCal.getEvents(e.getDay(), e.getMonth(), e.getYear());
         setSecondFragment(dailyEvents, false);
     }
