@@ -19,7 +19,7 @@ public class SQLHelper extends SQLiteOpenHelper
 	public final static String[] CALENDAR_COLUMNS = {COLUMN_CALENDARID, COLUMN_OWNER};
 	
 	/*Event table*/
-	public static final String COLUMN_EVENTID = "_eventid";
+	public static final String COLUMN_EVENTID = "_id";
 	public static final String COLUMN_TITLE = "title";
 	public static final String COLUMN_LOCATION = "location";
 	public static final String COLUMN_DATE = "date";
