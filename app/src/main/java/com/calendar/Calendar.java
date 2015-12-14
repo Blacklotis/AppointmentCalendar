@@ -94,4 +94,8 @@ public class Calendar {
 	public String toString() {
 		return "Calendar [calendarID=" + calendarID + ", owner=" + owner + "]";
 	}
+	
+	public void clearEvents() {
+		events.clear();
+	}
 }
