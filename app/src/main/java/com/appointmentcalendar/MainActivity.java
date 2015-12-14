@@ -63,7 +63,15 @@ public class MainActivity extends ActionBarActivity implements Serializable,
         dailyEvents = new ArrayList<>();
         ourCal = new Calendar();
 
-        setTestData();
+        //setTestData();
+        dbAdapter.open();
+        ourCal.setCalendarID(0);
+        ourCal.setOwner(""); //OPTIONAL TODO: Find out how to set owner to phone's owner
+        calAdapter.setCalendar(ourCal);
+        dbAdapter.addCalendar(ourCal);
+        dbAdapter.refresh();
+        
+        syncData(0);
     }
 
     public void onListItemClick(ListView listView, View view, int position,long id)
