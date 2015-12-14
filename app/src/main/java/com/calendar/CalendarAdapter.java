@@ -53,7 +53,7 @@ public class CalendarAdapter {
         // ASSUMPTIONS: Cursor points to a valid database
         Calendar chosen = getCalendar(calendarID);
 
-        //chosen.clearEvents();
+        chosen.clearEvents();
         while(!c.isAfterLast()) {
             if(chosen.getCalendarID() == c.getLong(c.getColumnIndexOrThrow("_calendarID")))
             {
